@@ -1,7 +1,7 @@
 import Zemu, { DEFAULT_START_OPTIONS, DeviceModel } from '@zondax/zemu';
 import Eth from '@ledgerhq/hw-app-eth';
 import { generate_plugin_config } from './generate_plugin_config';
-import { parseEther, parseUnits, RLP} from "ethers/lib/utils";
+import { parseEther, parseUnits, RLP } from "ethers/lib/utils";
 
 const transactionUploadDelay = 60000;
 
@@ -88,11 +88,11 @@ function zemu(device, func) {
         let lib_elf;
         elf_path = device.eth_path;
         // Edit this: replace `Boilerplate` by your plugin name
-        lib_elf = { 'Boilerplate': device.path };
+        lib_elf = { 'TiFiBank': device.path };
 
         const sim = new Zemu(elf_path, lib_elf);
         try {
-            await sim.start({...sim_options_nano, model: device.name});
+            await sim.start({ ...sim_options_nano, model: device.name });
             const transport = await sim.getTransport();
             const eth = new Eth(transport);
             eth.setLoadConfig({
