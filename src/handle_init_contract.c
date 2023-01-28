@@ -51,6 +51,39 @@ void handle_init_contract(void *parameters) {
         case SWAP_EXACT_TOKENS_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS:
             context->next_param = AMOUNT_SENT;
             break;
+        case ADD_LIQUIDITY_ETH:
+            context->next_param = TOKEN_SENT;
+            break;
+        case REMOVE_LIQUIDITY_ETH:
+            context->next_param = TOKEN_SENT;
+            break;
+        case LUCKY_BAG_AND_STAKE_DEPOSIT:
+            context->next_param = AMOUNT_SENT;
+            break;
+        case STAKE_WITHDRAW:
+            context->next_param = AMOUNT_STAKE_WITHDRAW;
+            break;
+        case LUCKY_BAG_WITHDRAW:
+            context->next_param = AMOUNT_LUCKY_BAG_WITHDRAW;
+            break;
+        case LUCKY_BAG_ENTER:
+            context->next_param = AMOUNT_LUCKY_BAG_ENTER;
+            break;
+        case APPROVE:
+            context->next_param = CONTRACT_ADDRESS;
+            break;
+        case LOAN_DEPOSIT:
+            context->next_param = TOKEN_SENT;
+            break;
+        case LOAN_WITHDRAW:
+            context->next_param = TOKEN_RECEIVED;
+            break;
+        case LOAN_BORROW:
+            context->next_param = TOKEN_RECEIVED;
+            break;
+        case LOAN_REPAY_BY_SHARE:
+            context->next_param = TOKEN_SENT;
+            break;
         // Keep this
         default:
             PRINTF("Missing selectorIndex: %d\n", context->selectorIndex);
