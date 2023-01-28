@@ -42,10 +42,6 @@ typedef enum {
     UNEXPECTED_PARAMETER,
     AMOUNT_SENT,
     TOKEN_SENT,
-    AMOUNT_STAKE_WITHDRAW,
-    AMOUNT_LUCKY_BAG_WITHDRAW,
-    AMOUNT_LUCKY_BAG_ENTER,
-    CONTRACT_ADDRESS,
 } parameter;
 
 // EDIT THIS: Rename `BOILERPLATE` to be the same as the one initialized in `main.c`. - Done
@@ -57,13 +53,9 @@ extern const uint32_t TIFI_SELECTORS[NUM_SELECTORS];
 typedef struct context_t {
     // For display.
     uint8_t amount_received[INT256_LENGTH];
-    uint8_t amount_stake_withdraw[INT256_LENGTH];
-    uint8_t amount_lucky_bag_withdraw[INT256_LENGTH];
-    uint8_t amount_lucky_bag_enter[INT256_LENGTH];
     uint8_t beneficiary[ADDRESS_LENGTH];
     uint8_t token_received[ADDRESS_LENGTH];
     uint8_t token_sent[ADDRESS_LENGTH];
-    uint8_t contract_address[ADDRESS_LENGTH];
     char ticker[MAX_TICKER_LEN];
     uint8_t decimals;
     uint8_t token_found;

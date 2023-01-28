@@ -61,16 +61,16 @@ void handle_init_contract(void *parameters) {
             context->next_param = AMOUNT_SENT;
             break;
         case STAKE_WITHDRAW:
-            context->next_param = AMOUNT_STAKE_WITHDRAW;
+            context->next_param = MIN_AMOUNT_RECEIVED;
             break;
         case LUCKY_BAG_WITHDRAW:
-            context->next_param = AMOUNT_LUCKY_BAG_WITHDRAW;
+            context->next_param = MIN_AMOUNT_RECEIVED;
             break;
         case LUCKY_BAG_ENTER:
-            context->next_param = AMOUNT_LUCKY_BAG_ENTER;
+            context->next_param = AMOUNT_SENT;
             break;
         case APPROVE:
-            context->next_param = CONTRACT_ADDRESS;
+            context->next_param = TOKEN_SENT;
             break;
         case LOAN_DEPOSIT:
             context->next_param = TOKEN_SENT;

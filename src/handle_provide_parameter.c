@@ -167,10 +167,10 @@ static void handle_stake_withdraw(ethPluginProvideParameter_t *msg, context_t *c
         context->go_to_offset = false;
     }
     switch (context->next_param) {
-        case AMOUNT_STAKE_WITHDRAW:  // amountSent
-            copy_parameter(context->amount_stake_withdraw,
+        case MIN_AMOUNT_RECEIVED:  // amountSent
+            copy_parameter(context->amount_received,
                            msg->parameter,
-                           sizeof(context->amount_stake_withdraw));
+                           sizeof(context->amount_received));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
         default:
@@ -188,10 +188,10 @@ static void handle_lucky_bag_withdraw(ethPluginProvideParameter_t *msg, context_
         context->go_to_offset = false;
     }
     switch (context->next_param) {
-        case AMOUNT_LUCKY_BAG_WITHDRAW:  // amountSent
-            copy_parameter(context->amount_lucky_bag_withdraw,
+        case MIN_AMOUNT_RECEIVED:  // amountSent
+            copy_parameter(context->amount_received,
                            msg->parameter,
-                           sizeof(context->amount_lucky_bag_withdraw));
+                           sizeof(context->amount_received));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
         default:
@@ -209,10 +209,10 @@ static void handle_lucky_bag_enter(ethPluginProvideParameter_t *msg, context_t *
         context->go_to_offset = false;
     }
     switch (context->next_param) {
-        case AMOUNT_LUCKY_BAG_ENTER:  // amountSent
-            copy_parameter(context->amount_lucky_bag_enter,
+        case AMOUNT_SENT:  // amountSent
+            copy_parameter(context->amount_sent,
                            msg->parameter,
-                           sizeof(context->amount_lucky_bag_enter));
+                           sizeof(context->amount_sent));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
         default:
@@ -230,8 +230,8 @@ static void handle_approve(ethPluginProvideParameter_t *msg, context_t *context)
         context->go_to_offset = false;
     }
     switch (context->next_param) {
-        case CONTRACT_ADDRESS:  // amountSent
-            copy_address(context->contract_address, msg->parameter, sizeof(context->contract_address))
+        case TOKEN_SENT:  // amountSent
+            copy_address(context->token_sent, msg->parameter, sizeof(context->token_sent));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
         default:
