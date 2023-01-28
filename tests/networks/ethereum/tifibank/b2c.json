@@ -1,0 +1,19 @@
+{
+    "chainId": 97,
+    "contracts": [
+        {
+            "address": "0x5b1e42d663b0c78b0a33731fdbd825bed47092e4",
+            "contractName": "Router",
+            "selectors": {
+                "0xb6f9de95": {
+                    "erc20OfInterest": [
+                        "path.1"
+                    ],
+                    "method": "swapExactETHForTokensSupportingFeeOnTransferTokens",
+                    "plugin": "TiFiBank"
+                }
+            }
+        }
+    ],
+    "name": "TiFiBank"
+}

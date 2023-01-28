@@ -22,19 +22,41 @@
 #include "os.h"
 #include "cx.h"
 
-#include "boilerplate_plugin.h"
+#include "tifi_bank_plugin.h"
 
 // List of selectors supported by this plugin.
-// EDIT THIS: Adapt the variable names and change the `0x` values to match your selectors.
-static const uint32_t SWAP_EXACT_ETH_FOR_TOKENS_SELECTOR = 0x7ff36ab5;
-static const uint32_t BOILERPLATE_DUMMY_SELECTOR_2 = 0x13374242;
+// EDIT THIS: Adapt the variable names and change the `0x` values to match your selectors. Right now, these selector are test net ID, need change to main net before publishing
+static const uint32_t SWAP_EXACT_ETH_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR = 0xb6f9de95;
+static const uint32_t SWAP_EXACT_TOKENS_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR = 0x5c11d795;
+static const uint32_t ADD_LIQUIDITY_ETH_SELECTOR = 0xf305d719;
+static const uint32_t REMOVE_LIQUIDITY_ETH_SELECTOR = 0x02751cec;
+static const uint32_t LUCKY_BAG_AND_STAKE_DEPOSIT_SELECTOR = 0xb6b55f25;
+static const uint32_t STAKE_WITHDRAW_SELECTOR = 0x441a3e70;
+static const uint32_t LUCKY_BAG_WITHDRAW_SELECTOR = 0x2e1a7d4d;
+static const uint32_t LUCKY_BAG_ENTER_SELECTOR = 0xa59f3e0c;
+static const uint32_t APPROVE_SELECTOR = 0x095ea7b3;
+static const uint32_t LOAN_DEPOSIT_SELECTOR = 0x47e7ef24;
+static const uint32_t LOAN_WITHDRAW_SELECTOR = 0xf3fef3a3;
+static const uint32_t LOAN_BORROW_SELECTOR = 0x4b8a3529;
+static const uint32_t LOAN_REPAY_BY_SHARE_SELECTOR = 0xa4bae008;
 
 // Array of all the different boilerplate selectors. Make sure this follows the same order as the
-// enum defined in `boilerplate_plugin.h`
-// EDIT THIS: Use the names of the array declared above.
-const uint32_t BOILERPLATE_SELECTORS[NUM_SELECTORS] = {
-    SWAP_EXACT_ETH_FOR_TOKENS_SELECTOR,
-    BOILERPLATE_DUMMY_SELECTOR_2,
+// enum defined in `tifi_bank_plugin.h`
+// EDIT THIS: Use the names of the array declared above. - Done
+const uint32_t TIFI_SELECTORS[NUM_SELECTORS] = {
+    SWAP_EXACT_ETH_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR,
+    SWAP_EXACT_TOKENS_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR,
+    ADD_LIQUIDITY_ETH_SELECTOR,
+    REMOVE_LIQUIDITY_ETH_SELECTOR,
+    LUCKY_BAG_AND_STAKE_DEPOSIT_SELECTOR,
+    STAKE_WITHDRAW_SELECTOR,
+    LUCKY_BAG_WITHDRAW_SELECTOR,
+    LUCKY_BAG_ENTER_SELECTOR,
+    APPROVE_SELECTOR,
+    LOAN_DEPOSIT_SELECTOR,
+    LOAN_WITHDRAW_SELECTOR,
+    LOAN_BORROW_SELECTOR,
+    LOAN_REPAY_BY_SHARE_SELECTOR,
 };
 
 // Function to dispatch calls from the ethereum app.
