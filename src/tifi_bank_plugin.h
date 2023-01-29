@@ -18,6 +18,7 @@
 typedef enum {
     SWAP_EXACT_ETH_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS,
     SWAP_EXACT_TOKENS_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS,
+    SWAP_EXACT_TOKENS_FOR_ETH_SUPPORTING_FEE_ON_TRANSFER_TOKENS,
     ADD_LIQUIDITY_ETH,
     REMOVE_LIQUIDITY_ETH,
     LUCKY_BAG_AND_STAKE_DEPOSIT,
@@ -57,8 +58,11 @@ typedef struct context_t {
     uint8_t token_received[ADDRESS_LENGTH];
     uint8_t token_sent[ADDRESS_LENGTH];
     char ticker[MAX_TICKER_LEN];
+    char ticker2[MAX_TICKER_LEN];
     uint8_t decimals;
+    uint8_t decimals2;
     uint8_t token_found;
+    uint8_t token_found2;
     uint8_t amount_sent[INT256_LENGTH];
 
     // For parsing data.

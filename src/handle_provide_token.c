@@ -30,5 +30,31 @@ void handle_provide_token(void *parameters) {
         // like so:
         // msg->additionalScreens = 1;
     }
+
+    
+    if (msg->item2) {
+        // The Ethereum App found the information for the requested token!
+        // Store its decimals.
+        context->decimals2 = msg->item2->token.decimals;
+        // Store its ticker.
+        strlcpy(context->ticker2, (char *) msg->item2->token.ticker, sizeof(context->ticker2));
+
+        // Keep track that we found the token.
+        context->token_found2 = true;
+    } else {
+        // The Ethereum App did not manage to find the info for the requested token.
+        context->token_found2 = false;
+
+        // Default to ETH decimals (for wei).
+        context->decimals2 = 18;
+        // Default to "???" when information was not found.
+        strlcpy(context->ticker2, "???", sizeof(context->ticker2));
+        
+        // If we wanted to add a screen, say a warning screen for example, we could instruct the
+        // ethereum app to add an additional screen by setting `msg->additionalScreens` here, just
+        // like so:
+        // msg->additionalScreens = 1;
+    }
+
     msg->result = ETH_PLUGIN_RESULT_OK;
 }
