@@ -162,21 +162,11 @@ static void set_screen1(ethQueryContractUI_t *msg, const context_t *context) {
     switch (context->selectorIndex) {
         case SWAP_EXACT_ETH_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS:
             strlcpy(msg->title, "For", msg->titleLength);
-            amountToString(context->token_received,
-                sizeof(context->token_received),
-                decimals,
-                ticker,
-                msg->msg,
-                msg->msgLength);
+            strlcpy(msg->msg, ticker, msg->msgLength);
             break;
         case SWAP_EXACT_TOKENS_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS:
             strlcpy(msg->title, "For", msg->titleLength);
-            amountToString(context->token_received,
-                sizeof(context->token_received),
-                decimals2,
-                ticker2,
-                msg->msg,
-                msg->msgLength);
+            strlcpy(msg->msg, ticker2, msg->msgLength);
             break;
         case SWAP_EXACT_TOKENS_FOR_ETH_SUPPORTING_FEE_ON_TRANSFER_TOKENS:
             strlcpy(msg->title, "For", msg->titleLength);
