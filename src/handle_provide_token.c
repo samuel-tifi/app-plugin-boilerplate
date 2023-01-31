@@ -24,14 +24,13 @@ void handle_provide_token(void *parameters) {
         context->decimals = 18;
         // Default to "???" when information was not found.
         strlcpy(context->ticker, "???", sizeof(context->ticker));
-        
+
         // If we wanted to add a screen, say a warning screen for example, we could instruct the
         // ethereum app to add an additional screen by setting `msg->additionalScreens` here, just
         // like so:
         // msg->additionalScreens = 1;
     }
 
-    
     if (msg->item2) {
         // The Ethereum App found the information for the requested token!
         // Store its decimals.
@@ -49,7 +48,7 @@ void handle_provide_token(void *parameters) {
         context->decimals2 = 18;
         // Default to "???" when information was not found.
         strlcpy(context->ticker2, "???", sizeof(context->ticker2));
-        
+
         // If we wanted to add a screen, say a warning screen for example, we could instruct the
         // ethereum app to add an additional screen by setting `msg->additionalScreens` here, just
         // like so:

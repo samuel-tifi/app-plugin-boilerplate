@@ -34,7 +34,7 @@ const nano_models: DeviceModel[] = [
 ];
 
 
-const boilerplateJSON = generate_plugin_config();
+const boilerplateJSON = generate_plugin_config("bsc");
 
 const SPECULOS_ADDRESS = '0xFE984369CE3919AA7BB4F431082D027B4F8ED70C';
 const RANDOM_ADDRESS = '0xaaaabbbbccccddddeeeeffffgggghhhhiiiijjjj'
