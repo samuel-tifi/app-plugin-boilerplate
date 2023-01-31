@@ -6,6 +6,7 @@ on:
     branches:
       - master
       - develop
+      - personal/Oscar/TIFIPluginDevelopment
   pull_request:
 
 jobs:
@@ -31,7 +32,7 @@ jobs:
         with:
           repository: LedgerHQ/ethereum-plugin-sdk
           path: ethereum-plugin-sdk
-          ref: ${{ github.base_ref || github.ref_name }}
+          ref: master
       - name: Build plugin
         run: |
           make clean
@@ -65,7 +66,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: LedgerHQ/app-ethereum
-          ref: ${{ github.base_ref || github.ref_name }}
+          ref: master
           submodules: recursive
       - name: Build ethereum
         run: |
@@ -128,7 +129,7 @@ jobs:
         with:
           repository: LedgerHQ/ethereum-plugin-sdk
           path: ethereum-plugin-sdk
-          ref: ${{ github.base_ref || github.ref_name }}
+          ref: master
       - name: Build with Clang Static Analyzer
         run: |
           make clean

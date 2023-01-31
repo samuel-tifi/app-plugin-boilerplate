@@ -14,7 +14,8 @@
 
 // Enumeration of the different selectors possible.
 // Should follow the exact same order as the array declared in main.c
-// EDIT THIS: Change the naming (`selector_t`), and add your selector names. - Done, added 13 selectors
+// EDIT THIS: Change the naming (`selector_t`), and add your selector names. - Done, added 13
+// selectors
 typedef enum {
     SWAP_EXACT_ETH_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS,
     SWAP_EXACT_TOKENS_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS,
