@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 import { parseEther, parseUnits } from "ethers/lib/utils";
 
 // EDIT THIS: Replace with your contract address
-const contractAddr = "0x5b1e42d663b0c78b0a33731fdbd825bed47092e4";
+const contractAddr = "0xc8595392b8ca616a226dce8f69d9e0c7d4c81fe4";
 // EDIT THIS: Replace `boilerplate` with your plugin name
 const pluginName = "tifibank";
 const testNetwork = "bsc";
@@ -23,8 +23,8 @@ nano_models.forEach(function (model) {
     // Constants used to create the transaction
     // EDIT THIS: Remove what you don't need
     const amountOutMin = parseUnits("28471151959593036279", 'wei');
-    const WBNB = "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd";
-    const TIFI = "0xEc9d9DD2e4a202aff885171192D6E091785d3487";
+    const WBNB = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
+    const TIFI = "0x17E65E6b9B166Fb8e7c59432F0db126711246BC0";
     const path = [WBNB, TIFI];
     const deadline = Number(1632843280);
     // We set beneficiary to the default address of the emulator, so it maches sender address

@@ -2,7 +2,7 @@
     "chainId": 97,
     "contracts": [
         {
-            "address": "0x5b1e42d663b0c78b0a33731fdbd825bed47092e4",
+            "address": "0xc8595392b8ca616a226dce8f69d9e0c7d4c81fe4",
             "contractName": "Router",
             "selectors": {
                 "0xb6f9de95": {
