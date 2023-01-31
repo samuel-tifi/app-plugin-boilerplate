@@ -13,7 +13,7 @@ const sim_options_nano = {
     ...DEFAULT_START_OPTIONS,
     logging: true,
     X11: true,
-    startDelay: 5000,
+    startDelay: 10000,
     startText: 'is ready'
 };
 
@@ -45,12 +45,12 @@ let genericTx = {
     gasLimit: Number(21000),
     gasPrice: parseUnits('1', 'gwei'),
     value: parseEther('1'),
-    chainId: 1,
+    chainId: 97,
     to: RANDOM_ADDRESS,
     data: null,
 };
 
-const TIMEOUT = 1000000;
+const TIMEOUT = 2000000;
 
 // Generates a serializedTransaction from a rawHexTransaction copy pasted from etherscan.
 function txFromEtherscan(rawTx) {

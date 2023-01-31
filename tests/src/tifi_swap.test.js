@@ -56,7 +56,9 @@ nano_models.forEach(function (model) {
     const right_clicks = model.letter === 'S' ? 7 : 5;
 
     // Wait for the application to actually load and parse the transaction
+    console.log('Waiting for the screen')
     await waitForAppScreen(sim);
+    console.log('screen ready')
     // Navigate the display by pressing the right button 10 times, then pressing both buttons to accept the transaction.
     // EDIT THIS: modify `10` to fix the number of screens you are expecting to navigate through.
     await sim.navigateAndCompareSnapshots('.', model.name + '_tifi_swap', [right_clicks, 0]);
