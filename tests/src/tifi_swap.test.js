@@ -8,7 +8,7 @@ import { parseEther, parseUnits } from "ethers/lib/utils";
 const contractAddr = "0x5b1e42d663b0c78b0a33731fdbd825bed47092e4";
 // EDIT THIS: Replace `boilerplate` with your plugin name
 const pluginName = "tifibank";
-const testNetwork = "ethereum";
+const testNetwork = "bsc";
 const abi_path = `../networks/${testNetwork}/${pluginName}/abis/` + contractAddr + '.json';
 const abi = require(abi_path);
 
@@ -53,7 +53,7 @@ nano_models.forEach(function (model) {
       serializedTx
     );
 
-    const right_clicks = model.letter === 'S' ? 7 : 5;
+    const right_clicks = model.letter === 'S' ? 9 : 7;
 
     // Wait for the application to actually load and parse the transaction
     console.log('Waiting for the screen')
