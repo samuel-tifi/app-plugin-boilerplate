@@ -63,7 +63,7 @@ static void set_screen0(ethQueryContractUI_t *msg, const context_t *context) {
             amountToString(context->amount_sent,
                            sizeof(context->amount_sent),
                            WEI_TO_ETHER,
-                           'TIFI ',
+                           "TIFI ",
                            msg->msg,
                            msg->msgLength);
             break;
@@ -72,7 +72,7 @@ static void set_screen0(ethQueryContractUI_t *msg, const context_t *context) {
             amountToString(context->amount_received,
                            sizeof(context->amount_received),
                            WEI_TO_ETHER,
-                           'TIFI ',
+                           "TIFI ",
                            msg->msg,
                            msg->msgLength);
             break;
@@ -81,7 +81,7 @@ static void set_screen0(ethQueryContractUI_t *msg, const context_t *context) {
             amountToString(context->amount_received,
                            sizeof(context->amount_received),
                            WEI_TO_ETHER,
-                           'TIFI ',
+                           "TIFI ",
                            msg->msg,
                            msg->msgLength);
             break;
@@ -90,7 +90,7 @@ static void set_screen0(ethQueryContractUI_t *msg, const context_t *context) {
             amountToString(context->amount_sent,
                            sizeof(context->amount_sent),
                            WEI_TO_ETHER,
-                           'TIFI ',
+                           "TIFI ",
                            msg->msg,
                            msg->msgLength);
             break;
@@ -145,21 +145,17 @@ static void set_screen0(ethQueryContractUI_t *msg, const context_t *context) {
 }
 
 static void set_screen1(ethQueryContractUI_t *msg, const context_t *context) {
-    uint8_t decimals2 = context->decimals2;
     const char *ticker2 = context->ticker2;
-    uint8_t decimals = context->decimals;
     const char *ticker = context->ticker;
     const uint8_t *eth_amount = msg->pluginSharedRO->txContent->value.value;
     uint8_t eth_amount_size = msg->pluginSharedRO->txContent->value.length;
 
     // If the token look up failed, use the default network ticker along with the default decimals.
     if (!context->token_found2) {
-        decimals2 = WEI_TO_ETHER;
         ticker2 = msg->network_ticker;
     }
 
     if (!context->token_found) {
-        decimals = WEI_TO_ETHER;
         ticker = msg->network_ticker;
     }
 
