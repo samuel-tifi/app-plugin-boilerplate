@@ -157,7 +157,7 @@ static void set_screen1(ethQueryContractUI_t *msg, const context_t *context) {
         decimals2 = WEI_TO_ETHER;
         ticker2 = msg->network_ticker;
     }
-    
+
     if (!context->token_found) {
         decimals = WEI_TO_ETHER;
         ticker = msg->network_ticker;
