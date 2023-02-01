@@ -75,7 +75,8 @@ static void handle_swap_exact_tokens_for_tokens_supporting_fee_on_transfer_token
             break;
         case PATH_LENGTH:
             context->offset = msg->parameterOffset - SELECTOR_SIZE +
-                              PARAMETER_LENGTH * U2BE(msg->parameter, PARAMETER_LENGTH - 1);
+                              PARAMETER_LENGTH * U2BE(msg->parameter, PARAMETER_LENGTH - 2);
+            PRINTF("Debug Info %d\n", context->offset);
             context->next_param = TOKEN_SENT;
             break;
         case TOKEN_SENT:
@@ -85,6 +86,7 @@ static void handle_swap_exact_tokens_for_tokens_supporting_fee_on_transfer_token
             break;
         case TOKEN_RECEIVED:  // path[1] -> contract address of token received
             copy_address(context->token_received, msg->parameter, sizeof(context->token_received));
+            PRINTF("Debug Info %d\n", msg->parameter);
             context->next_param = UNEXPECTED_PARAMETER;
             break;
         // Keep this

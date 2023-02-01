@@ -11,6 +11,21 @@
                     ],
                     "method": "swapExactETHForTokensSupportingFeeOnTransferTokens",
                     "plugin": "TiFiBank"
+                },
+                "0x5c11d795": {
+                    "erc20OfInterest": [
+                        "path.0",
+                        "path.2"
+                    ],
+                    "method": "swapExactTokensForTokensSupportingFeeOnTransferTokens",
+                    "plugin": "TiFiBank"
+                },
+                "0x791ac947": {
+                    "erc20OfInterest": [
+                        "path.0"
+                    ],
+                    "method": "swapExactTokensForETHSupportingFeeOnTransferTokens",
+                    "plugin": "TiFiBank"
                 }
             }
         }
