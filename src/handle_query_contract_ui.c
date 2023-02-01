@@ -154,6 +154,11 @@ static void set_screen1(ethQueryContractUI_t *msg, const context_t *context) {
 
     // If the token look up failed, use the default network ticker along with the default decimals.
     if (!context->token_found2) {
+        decimals2 = WEI_TO_ETHER;
+        ticker2 = msg->network_ticker;
+    }
+    
+    if (!context->token_found) {
         decimals = WEI_TO_ETHER;
         ticker = msg->network_ticker;
     }

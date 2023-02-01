@@ -23,8 +23,8 @@ nano_models.forEach(function (model) {
     // Constants used to create the transaction
     // EDIT THIS: Remove what you don't need
     const amountOutMin = parseUnits("28471151959593036279", 'wei');
-    const WBNB = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
-    const TIFI = "0x17E65E6b9B166Fb8e7c59432F0db126711246BC0";
+    const WBNB = "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c";
+    const TIFI = "0x17e65e6b9b166fb8e7c59432f0db126711246bc0";
     const path = [WBNB, TIFI];
     const deadline = Number(1632843280);
     // We set beneficiary to the default address of the emulator, so it maches sender address
