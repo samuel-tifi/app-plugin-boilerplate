@@ -22,9 +22,9 @@ nano_models.forEach(function (model) {
 
     // Constants used to create the transaction
     // EDIT THIS: Remove what you don't need
-    const amountTokenDesired = parseUnits("4869280000000000000", 'wei');
-    const amountTokenMin = parseUnits("4869280000000000000", 'wei');
-    const amountETHMin = parseUnits("4869280000000000000", 'wei');
+    const amountTokenDesired = parseUnits("4869280000000000000000848244", 'wei');
+    const amountTokenMin = parseUnits("4869280000000000000000848244", 'wei');
+    const amountETHMin = parseUnits("4869280000000000000000848244", 'wei');
     const TIFI = "0x17e65e6b9b166fb8e7c59432f0db126711246bc0";
     const deadline = Number(1632843280);
     // We set beneficiary to the default address of the emulator, so it maches sender address
@@ -53,7 +53,7 @@ nano_models.forEach(function (model) {
       serializedTx
     );
 
-    const right_clicks = model.letter === 'S' ? 10 : 10;
+    const right_clicks = model.letter === 'S' ? 8 : 6;
 
     // Wait for the application to actually load and parse the transaction
     await waitForAppScreen(sim);
