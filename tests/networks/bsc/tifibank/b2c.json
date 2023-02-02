@@ -26,6 +26,20 @@
                     ],
                     "method": "swapExactTokensForETHSupportingFeeOnTransferTokens",
                     "plugin": "TiFiBank"
+                },
+                "0xf305d719": {
+                    "erc20OfInterest": [
+                        "token"
+                    ],
+                    "method": "addLiquidityETH",
+                    "plugin": "TiFiBank"
+                },
+                "0x02751cec": {
+                    "erc20OfInterest": [
+                        "token"
+                    ],
+                    "method": "removeLiquidityETH",
+                    "plugin": "TiFiBank"
                 }
             }
         }
