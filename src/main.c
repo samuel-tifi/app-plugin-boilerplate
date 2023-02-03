@@ -25,10 +25,14 @@
 #include "tifi_bank_plugin.h"
 
 // List of selectors supported by this plugin.
-// EDIT THIS: Adapt the variable names and change the `0x` values to match your selectors. Right now, these selector are test net ID, need change to main net before publishing
-static const uint32_t SWAP_EXACT_ETH_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR = 0xb6f9de95;
-static const uint32_t SWAP_EXACT_TOKENS_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR = 0x5c11d795;
-static const uint32_t SWAP_EXACT_TOKENS_FOR_ETH_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR = 0x791ac947;
+// EDIT THIS: Adapt the variable names and change the `0x` values to match your selectors. Right
+// now, these selector are test net ID, need change to main net before publishing
+static const uint32_t SWAP_EXACT_ETH_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR =
+    0xb6f9de95;
+static const uint32_t SWAP_EXACT_TOKENS_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR =
+    0x5c11d795;
+static const uint32_t SWAP_EXACT_TOKENS_FOR_ETH_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR =
+    0x791ac947;
 static const uint32_t ADD_LIQUIDITY_ETH_SELECTOR = 0xf305d719;
 static const uint32_t REMOVE_LIQUIDITY_ETH_SELECTOR = 0x02751cec;
 static const uint32_t LUCKY_BAG_AND_STAKE_DEPOSIT_SELECTOR = 0xb6b55f25;

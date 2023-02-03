@@ -6,7 +6,7 @@
 
 // Number of selectors defined in this plugin. Should match the enum `selector_t`.
 // EDIT THIS: Put in the number of selectors your plugin is going to support. - Done
-#define NUM_SELECTORS 13
+#define NUM_SELECTORS 14
 
 // Name of the plugin.
 // EDIT THIS: Replace with your plugin name. - Done
@@ -14,7 +14,8 @@
 
 // Enumeration of the different selectors possible.
 // Should follow the exact same order as the array declared in main.c
-// EDIT THIS: Change the naming (`selector_t`), and add your selector names. - Done, added 13 selectors
+// EDIT THIS: Change the naming (`selector_t`), and add your selector names. - Done, added 13
+// selectors
 typedef enum {
     SWAP_EXACT_ETH_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS,
     SWAP_EXACT_TOKENS_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS,

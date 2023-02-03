@@ -2,7 +2,9 @@
 
 // EDIT THIS: Remove this function and write your own handlers!
 // SWAP_EXACT_ETH_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS
-static void handle_swap_exact_eth_for_tokens_supporting_fee_on_transfer_tokens(ethPluginProvideParameter_t *msg, context_t *context) {
+static void handle_swap_exact_eth_for_tokens_supporting_fee_on_transfer_tokens(
+    ethPluginProvideParameter_t *msg,
+    context_t *context) {
     if (context->go_to_offset) {
         if (msg->parameterOffset != context->offset + SELECTOR_SIZE) {
             return;
@@ -42,7 +44,9 @@ static void handle_swap_exact_eth_for_tokens_supporting_fee_on_transfer_tokens(e
     }
 }
 
-static void handle_swap_exact_tokens_for_tokens_supporting_fee_on_transfer_tokens(ethPluginProvideParameter_t *msg, context_t *context) {
+static void handle_swap_exact_tokens_for_tokens_supporting_fee_on_transfer_tokens(
+    ethPluginProvideParameter_t *msg,
+    context_t *context) {
     if (context->go_to_offset) {
         if (msg->parameterOffset != context->offset + SELECTOR_SIZE) {
             return;
@@ -51,9 +55,7 @@ static void handle_swap_exact_tokens_for_tokens_supporting_fee_on_transfer_token
     }
     switch (context->next_param) {
         case AMOUNT_SENT:  // amountSent
-            copy_parameter(context->amount_sent,
-                           msg->parameter,
-                           sizeof(context->amount_sent));
+            copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = MIN_AMOUNT_RECEIVED;
             break;
         case MIN_AMOUNT_RECEIVED:  // amountOutMin
@@ -72,7 +74,9 @@ static void handle_swap_exact_tokens_for_tokens_supporting_fee_on_transfer_token
             context->go_to_offset = true;
             break;
         case PATH_LENGTH:
-            context->offset = msg->parameterOffset - SELECTOR_SIZE + PARAMETER_LENGTH * U2BE(msg->parameter, PARAMETER_LENGTH - 1);
+            context->offset = msg->parameterOffset - SELECTOR_SIZE +
+                              PARAMETER_LENGTH * U2BE(msg->parameter, PARAMETER_LENGTH - 2);
+            PRINTF("Debug Info %d\n", context->offset);
             context->next_param = TOKEN_SENT;
             break;
         case TOKEN_SENT:
@@ -82,6 +86,7 @@ static void handle_swap_exact_tokens_for_tokens_supporting_fee_on_transfer_token
             break;
         case TOKEN_RECEIVED:  // path[1] -> contract address of token received
             copy_address(context->token_received, msg->parameter, sizeof(context->token_received));
+            PRINTF("Debug Info %d\n", msg->parameter);
             context->next_param = UNEXPECTED_PARAMETER;
             break;
         // Keep this
@@ -92,7 +97,9 @@ static void handle_swap_exact_tokens_for_tokens_supporting_fee_on_transfer_token
     }
 }
 
-static void handle_swap_exact_tokens_for_eth_supporting_fee_on_transfer_tokens(ethPluginProvideParameter_t *msg, context_t *context) {
+static void handle_swap_exact_tokens_for_eth_supporting_fee_on_transfer_tokens(
+    ethPluginProvideParameter_t *msg,
+    context_t *context) {
     if (context->go_to_offset) {
         if (msg->parameterOffset != context->offset + SELECTOR_SIZE) {
             return;
@@ -101,9 +108,7 @@ static void handle_swap_exact_tokens_for_eth_supporting_fee_on_transfer_tokens(e
     }
     switch (context->next_param) {
         case AMOUNT_SENT:  // amountSent
-            copy_parameter(context->amount_sent,
-                           msg->parameter,
-                           sizeof(context->amount_sent));
+            copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = MIN_AMOUNT_RECEIVED;
             break;
         case MIN_AMOUNT_RECEIVED:  // amountOutMin
@@ -122,7 +127,8 @@ static void handle_swap_exact_tokens_for_eth_supporting_fee_on_transfer_tokens(e
             context->go_to_offset = true;
             break;
         case PATH_LENGTH:
-            context->offset = msg->parameterOffset - SELECTOR_SIZE + PARAMETER_LENGTH * U2BE(msg->parameter, PARAMETER_LENGTH - 1);
+            context->offset = msg->parameterOffset - SELECTOR_SIZE +
+                              PARAMETER_LENGTH * U2BE(msg->parameter, PARAMETER_LENGTH - 1);
             context->next_param = TOKEN_SENT;
             break;
         case TOKEN_SENT:
@@ -151,10 +157,10 @@ static void handle_add_liquidity_eth(ethPluginProvideParameter_t *msg, context_t
             context->next_param = AMOUNT_SENT;
             break;
         case AMOUNT_SENT:  // amountSent
-            copy_parameter(context->amount_sent,
-                           msg->parameter,
-                           sizeof(context->amount_sent));
+            copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = UNEXPECTED_PARAMETER;
+            break;
+        case UNEXPECTED_PARAMETER:
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
@@ -176,10 +182,10 @@ static void handle_remove_liquidity_eth(ethPluginProvideParameter_t *msg, contex
             context->next_param = AMOUNT_SENT;
             break;
         case AMOUNT_SENT:  // amountSent
-            copy_parameter(context->amount_sent,
-                           msg->parameter,
-                           sizeof(context->amount_sent));
+            copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = UNEXPECTED_PARAMETER;
+            break;
+        case UNEXPECTED_PARAMETER:
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
@@ -188,7 +194,8 @@ static void handle_remove_liquidity_eth(ethPluginProvideParameter_t *msg, contex
     }
 }
 
-static void handle_lucky_bag_and_stake_deposit(ethPluginProvideParameter_t *msg, context_t *context) {
+static void handle_lucky_bag_and_stake_deposit(ethPluginProvideParameter_t *msg,
+                                               context_t *context) {
     if (context->go_to_offset) {
         if (msg->parameterOffset != context->offset + SELECTOR_SIZE) {
             return;
@@ -197,10 +204,10 @@ static void handle_lucky_bag_and_stake_deposit(ethPluginProvideParameter_t *msg,
     }
     switch (context->next_param) {
         case AMOUNT_SENT:  // amountSent
-            copy_parameter(context->amount_sent,
-                           msg->parameter,
-                           sizeof(context->amount_sent));
+            copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = UNEXPECTED_PARAMETER;
+            break;
+        case UNEXPECTED_PARAMETER:
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
@@ -223,6 +230,8 @@ static void handle_stake_withdraw(ethPluginProvideParameter_t *msg, context_t *c
                            sizeof(context->amount_received));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
+        case UNEXPECTED_PARAMETER:
+            break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -244,6 +253,8 @@ static void handle_lucky_bag_withdraw(ethPluginProvideParameter_t *msg, context_
                            sizeof(context->amount_received));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
+        case UNEXPECTED_PARAMETER:
+            break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -260,10 +271,10 @@ static void handle_lucky_bag_enter(ethPluginProvideParameter_t *msg, context_t *
     }
     switch (context->next_param) {
         case AMOUNT_SENT:  // amountSent
-            copy_parameter(context->amount_sent,
-                           msg->parameter,
-                           sizeof(context->amount_sent));
+            copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = UNEXPECTED_PARAMETER;
+            break;
+        case UNEXPECTED_PARAMETER:
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
@@ -283,6 +294,8 @@ static void handle_approve(ethPluginProvideParameter_t *msg, context_t *context)
         case TOKEN_SENT:  // amountSent
             copy_address(context->token_sent, msg->parameter, sizeof(context->token_sent));
             context->next_param = UNEXPECTED_PARAMETER;
+            break;
+        case UNEXPECTED_PARAMETER:
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
@@ -304,10 +317,10 @@ static void handle_loan_deposit(ethPluginProvideParameter_t *msg, context_t *con
             context->next_param = AMOUNT_SENT;
             break;
         case AMOUNT_SENT:  // amountSent
-            copy_parameter(context->amount_sent,
-                           msg->parameter,
-                           sizeof(context->amount_sent));
+            copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = UNEXPECTED_PARAMETER;
+            break;
+        case UNEXPECTED_PARAMETER:
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
@@ -334,6 +347,8 @@ static void handle_loan_borrow(ethPluginProvideParameter_t *msg, context_t *cont
                            sizeof(context->amount_received));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
+        case UNEXPECTED_PARAMETER:
+            break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -359,6 +374,8 @@ static void handle_loan_withdraw(ethPluginProvideParameter_t *msg, context_t *co
                            sizeof(context->amount_received));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
+        case UNEXPECTED_PARAMETER:
+            break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -379,10 +396,10 @@ static void handle_loan_repay_by_share(ethPluginProvideParameter_t *msg, context
             context->next_param = AMOUNT_SENT;
             break;
         case AMOUNT_SENT:  // amountSent
-            copy_parameter(context->amount_sent,
-                           msg->parameter,
-                           sizeof(context->amount_sent));
+            copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = UNEXPECTED_PARAMETER;
+            break;
+        case UNEXPECTED_PARAMETER:
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
