@@ -112,7 +112,7 @@ jobs:
           npm install -g yarn
       - name: Build/Install build js deps
         run: |
-          cd tests && yarn install
+          cd tests && yarn install && yarn list @ledgerhq/cryptoassets
       - name: Run zemu tests
         run: |
           cd tests && yarn test

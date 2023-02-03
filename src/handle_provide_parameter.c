@@ -160,6 +160,8 @@ static void handle_add_liquidity_eth(ethPluginProvideParameter_t *msg, context_t
             copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
+        case UNEXPECTED_PARAMETER:
+            break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -183,6 +185,8 @@ static void handle_remove_liquidity_eth(ethPluginProvideParameter_t *msg, contex
             copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
+        case UNEXPECTED_PARAMETER:
+            break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -202,6 +206,8 @@ static void handle_lucky_bag_and_stake_deposit(ethPluginProvideParameter_t *msg,
         case AMOUNT_SENT:  // amountSent
             copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = UNEXPECTED_PARAMETER;
+            break;
+        case UNEXPECTED_PARAMETER:
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
@@ -224,6 +230,8 @@ static void handle_stake_withdraw(ethPluginProvideParameter_t *msg, context_t *c
                            sizeof(context->amount_received));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
+        case UNEXPECTED_PARAMETER:
+            break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -245,6 +253,8 @@ static void handle_lucky_bag_withdraw(ethPluginProvideParameter_t *msg, context_
                            sizeof(context->amount_received));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
+        case UNEXPECTED_PARAMETER:
+            break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -264,6 +274,8 @@ static void handle_lucky_bag_enter(ethPluginProvideParameter_t *msg, context_t *
             copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
+        case UNEXPECTED_PARAMETER:
+            break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -282,6 +294,8 @@ static void handle_approve(ethPluginProvideParameter_t *msg, context_t *context)
         case TOKEN_SENT:  // amountSent
             copy_address(context->token_sent, msg->parameter, sizeof(context->token_sent));
             context->next_param = UNEXPECTED_PARAMETER;
+            break;
+        case UNEXPECTED_PARAMETER:
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
@@ -305,6 +319,8 @@ static void handle_loan_deposit(ethPluginProvideParameter_t *msg, context_t *con
         case AMOUNT_SENT:  // amountSent
             copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = UNEXPECTED_PARAMETER;
+            break;
+        case UNEXPECTED_PARAMETER:
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
@@ -331,6 +347,8 @@ static void handle_loan_borrow(ethPluginProvideParameter_t *msg, context_t *cont
                            sizeof(context->amount_received));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
+        case UNEXPECTED_PARAMETER:
+            break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -356,6 +374,8 @@ static void handle_loan_withdraw(ethPluginProvideParameter_t *msg, context_t *co
                            sizeof(context->amount_received));
             context->next_param = UNEXPECTED_PARAMETER;
             break;
+        case UNEXPECTED_PARAMETER:
+            break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -378,6 +398,8 @@ static void handle_loan_repay_by_share(ethPluginProvideParameter_t *msg, context
         case AMOUNT_SENT:  // amountSent
             copy_parameter(context->amount_sent, msg->parameter, sizeof(context->amount_sent));
             context->next_param = UNEXPECTED_PARAMETER;
+            break;
+        case UNEXPECTED_PARAMETER:
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);

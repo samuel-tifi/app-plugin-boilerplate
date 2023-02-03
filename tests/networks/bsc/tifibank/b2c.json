@@ -26,6 +26,102 @@
                     ],
                     "method": "swapExactTokensForETHSupportingFeeOnTransferTokens",
                     "plugin": "TiFiBank"
+                },
+                "0xf305d719": {
+                    "erc20OfInterest": [
+                        "token"
+                    ],
+                    "method": "addLiquidityETH",
+                    "plugin": "TiFiBank"
+                },
+                "0x02751cec": {
+                    "erc20OfInterest": [
+                        "token"
+                    ],
+                    "method": "removeLiquidityETH",
+                    "plugin": "TiFiBank"
+                }
+            }
+        },
+        {
+            "address": "0x0aeff3d761f6706295f3828c87cce29c9418a93b",
+            "contractName": "Reservior",
+            "selectors": {
+                "0xb6b55f25": {
+                    "erc20OfInterest": [],
+                    "method": "deposit",
+                    "plugin": "TiFiBank"
+                },
+                "0x441a3e70": {
+                    "erc20OfInterest": [],
+                    "method": "withdraw",
+                    "plugin": "TiFiBank"
+                }
+            }
+        },
+        {
+            "address": "0x90aa87478408c52a10139896f56ae0fcb641d238",
+            "contractName": "LuckyBags",
+            "selectors": {
+                "0xb6b55f25": {
+                    "erc20OfInterest": [],
+                    "method": "deposit",
+                    "plugin": "TiFiBank"
+                },
+                "0x2e1a7d4d": {
+                    "erc20OfInterest": [],
+                    "method": "withdraw",
+                    "plugin": "TiFiBank"
+                },
+                "0xa59f3e0c": {
+                    "erc20OfInterest": [],
+                    "method": "enter",
+                    "plugin": "TiFiBank"
+                }
+            }
+        },
+        {
+            "address": "0x8a6f7834a9d60090668f5db33fec353a7fb4704b",
+            "contractName": "Lending",
+            "selectors": {
+                "0x47e7ef24": {
+                    "erc20OfInterest": [
+                        "_pair"
+                    ],
+                    "method": "deposit",
+                    "plugin": "TiFiBank"
+                },
+                "0xf3fef3a3": {
+                    "erc20OfInterest": [
+                        "_recipient"
+                    ],
+                    "method": "withdraw",
+                    "plugin": "TiFiBank"
+                },
+                "0x4b8a3529": {
+                    "erc20OfInterest": [
+                        "borrower"
+                    ],
+                    "method": "borrow",
+                    "plugin": "TiFiBank"
+                },
+                "0xa4bae008": {
+                    "erc20OfInterest": [
+                        "_token"
+                    ],
+                    "method": "repayByShare",
+                    "plugin": "TiFiBank"
+                }
+            }
+        },
+        {
+            "address": "0x17e65e6b9b166fb8e7c59432f0db126711246bc0",
+            "contractName": "TIFI",
+            "selectors": {
+                "0x095ea7b3": {
+                    "erc20OfInterest": [],
+                    "method": "approve",
+                    "plugin": "TiFiBank"
                 }
             }
         }
