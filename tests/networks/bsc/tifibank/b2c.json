@@ -86,21 +86,21 @@
             "selectors": {
                 "0x47e7ef24": {
                     "erc20OfInterest": [
-                        "_pair"
+                        "_token"
                     ],
                     "method": "deposit",
                     "plugin": "TiFiBank"
                 },
                 "0xf3fef3a3": {
                     "erc20OfInterest": [
-                        "_recipient"
+                        "_token"
                     ],
                     "method": "withdraw",
                     "plugin": "TiFiBank"
                 },
                 "0x4b8a3529": {
                     "erc20OfInterest": [
-                        "borrower"
+                        "_token"
                     ],
                     "method": "borrow",
                     "plugin": "TiFiBank"

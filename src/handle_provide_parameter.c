@@ -339,7 +339,7 @@ static void handle_loan_borrow(ethPluginProvideParameter_t *msg, context_t *cont
     switch (context->next_param) {
         case TOKEN_RECEIVED:  // amountSent
             copy_address(context->token_received, msg->parameter, sizeof(context->token_received));
-            context->next_param = AMOUNT_SENT;
+            context->next_param = MIN_AMOUNT_RECEIVED;
             break;
         case MIN_AMOUNT_RECEIVED:  // amountSent
             copy_parameter(context->amount_received,
@@ -366,7 +366,7 @@ static void handle_loan_withdraw(ethPluginProvideParameter_t *msg, context_t *co
     switch (context->next_param) {
         case TOKEN_RECEIVED:  // amountSent
             copy_address(context->token_received, msg->parameter, sizeof(context->token_received));
-            context->next_param = AMOUNT_SENT;
+            context->next_param = MIN_AMOUNT_RECEIVED;
             break;
         case MIN_AMOUNT_RECEIVED:  // amountSent
             copy_parameter(context->amount_received,
