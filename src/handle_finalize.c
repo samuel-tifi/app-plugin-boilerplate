@@ -63,8 +63,5 @@ void handle_finalize(void *parameters) {
             break;
     }
 
-    // EDIT THIS: set `tokenLookup1` (and maybe `tokenLookup2`) to point to
-    // token addresses you will info for (such as decimals, ticker...).
-
     msg->result = ETH_PLUGIN_RESULT_OK;
 }

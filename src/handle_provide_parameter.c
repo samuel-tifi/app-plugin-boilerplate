@@ -1,7 +1,5 @@
 #include "tifi_bank_plugin.h"
 
-// EDIT THIS: Remove this function and write your own handlers!
-// SWAP_EXACT_ETH_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS
 static void handle_swap_exact_eth_for_tokens_supporting_fee_on_transfer_tokens(
     ethPluginProvideParameter_t *msg,
     context_t *context) {

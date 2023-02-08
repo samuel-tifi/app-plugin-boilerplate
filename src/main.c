@@ -24,9 +24,6 @@
 
 #include "tifi_bank_plugin.h"
 
-// List of selectors supported by this plugin.
-// EDIT THIS: Adapt the variable names and change the `0x` values to match your selectors. Right
-// now, these selector are test net ID, need change to main net before publishing
 static const uint32_t SWAP_EXACT_ETH_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR =
     0xb6f9de95;
 static const uint32_t SWAP_EXACT_TOKENS_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR =
@@ -45,9 +42,6 @@ static const uint32_t LOAN_WITHDRAW_SELECTOR = 0xf3fef3a3;
 static const uint32_t LOAN_BORROW_SELECTOR = 0x4b8a3529;
 static const uint32_t LOAN_REPAY_BY_SHARE_SELECTOR = 0xa4bae008;
 
-// Array of all the different boilerplate selectors. Make sure this follows the same order as the
-// enum defined in `tifi_bank_plugin.h`
-// EDIT THIS: Use the names of the array declared above. - Done
 const uint32_t TIFI_SELECTORS[NUM_SELECTORS] = {
     SWAP_EXACT_ETH_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR,
     SWAP_EXACT_TOKENS_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS_SELECTOR,
@@ -65,7 +59,6 @@ const uint32_t TIFI_SELECTORS[NUM_SELECTORS] = {
     LOAN_REPAY_BY_SHARE_SELECTOR,
 };
 
-// Function to dispatch calls from the ethereum app.
 void dispatch_plugin_calls(int message, void *parameters) {
     switch (message) {
         case ETH_PLUGIN_INIT_CONTRACT:
@@ -102,7 +95,6 @@ void handle_query_ui_exception(unsigned int *args) {
     }
 }
 
-// Calls the ethereum app.
 void call_app_ethereum() {
     unsigned int libcall_params[3];
     libcall_params[0] = (unsigned int) "Ethereum";
@@ -111,31 +103,21 @@ void call_app_ethereum() {
     os_lib_call((unsigned int *) &libcall_params);
 }
 
-// Weird low-level black magic. No need to edit this.
 __attribute__((section(".boot"))) int main(int arg0) {
-    // Exit critical section
     __asm volatile("cpsie i");
 
-    // Ensure exception will work as planned
     os_boot();
 
-    // Try catch block. Please read the docs for more information on how to use those!
     BEGIN_TRY {
         TRY {
-            // Low-level black magic.
             check_api_level(CX_COMPAT_APILEVEL);
 
-            // Check if we are called from the dashboard.
             if (!arg0) {
-                // Called from dashboard, launch Ethereum app
                 call_app_ethereum();
                 return 0;
             } else {
-                // Not called from dashboard: called from the ethereum app!
                 const unsigned int *args = (const unsigned int *) arg0;
 
-                // If `ETH_PLUGIN_CHECK_PRESENCE` is set, this means the caller is just trying to
-                // know whether this app exists or not. We can skip `dispatch_plugin_calls`.
                 if (args[0] != ETH_PLUGIN_CHECK_PRESENCE) {
                     dispatch_plugin_calls(args[0], (void *) args[1]);
                 }
@@ -143,7 +125,6 @@ __attribute__((section(".boot"))) int main(int arg0) {
         }
         CATCH_OTHER(e) {
             switch (e) {
-                // These exceptions are only generated on handle_query_contract_ui()
                 case 0x6502:
                 case EXCEPTION_OVERFLOW:
                     handle_query_ui_exception((unsigned int *) arg0);
@@ -154,12 +135,10 @@ __attribute__((section(".boot"))) int main(int arg0) {
             PRINTF("Exception 0x%x caught\n", e);
         }
         FINALLY {
-            // Call `os_lib_end`, go back to the ethereum app.
             os_lib_end();
         }
     }
     END_TRY;
 
-    // Will not get reached.
     return 0;
 }
