@@ -6,7 +6,6 @@ on:
     branches:
       - master
       - develop
-      - personal/Oscar/TIFIPluginDevelopment
   pull_request:
 
 jobs:
@@ -112,7 +111,7 @@ jobs:
           npm install -g yarn
       - name: Build/Install build js deps
         run: |
-          cd tests && yarn install && yarn list @ledgerhq/cryptoassets
+          cd tests && yarn install
       - name: Run zemu tests
         run: |
           cd tests && yarn test
