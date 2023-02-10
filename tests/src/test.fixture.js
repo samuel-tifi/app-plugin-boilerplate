@@ -1,9 +1,9 @@
 import Zemu, { DEFAULT_START_OPTIONS, DeviceModel } from '@zondax/zemu';
 import Eth from '@ledgerhq/hw-app-eth';
 import { generate_plugin_config } from './generate_plugin_config';
-import { parseEther, parseUnits, RLP} from "ethers/lib/utils";
+import { parseEther, parseUnits, RLP } from "ethers/lib/utils";
 
-const transactionUploadDelay = 60000;
+const transactionUploadDelay = 600000;
 
 async function waitForAppScreen(sim) {
     await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot(), transactionUploadDelay);
@@ -13,7 +13,7 @@ const sim_options_nano = {
     ...DEFAULT_START_OPTIONS,
     logging: true,
     X11: true,
-    startDelay: 5000,
+    startDelay: 10000,
     startText: 'is ready'
 };
 
@@ -34,7 +34,7 @@ const nano_models: DeviceModel[] = [
 ];
 
 
-const boilerplateJSON = generate_plugin_config();
+const boilerplateJSON = generate_plugin_config("bsc");
 
 const SPECULOS_ADDRESS = '0xFE984369CE3919AA7BB4F431082D027B4F8ED70C';
 const RANDOM_ADDRESS = '0xaaaabbbbccccddddeeeeffffgggghhhhiiiijjjj'
@@ -45,12 +45,12 @@ let genericTx = {
     gasLimit: Number(21000),
     gasPrice: parseUnits('1', 'gwei'),
     value: parseEther('1'),
-    chainId: 1,
+    chainId: 56,
     to: RANDOM_ADDRESS,
     data: null,
 };
 
-const TIMEOUT = 1000000;
+const TIMEOUT = 2000000;
 
 // Generates a serializedTransaction from a rawHexTransaction copy pasted from etherscan.
 function txFromEtherscan(rawTx) {
@@ -88,11 +88,11 @@ function zemu(device, func) {
         let lib_elf;
         elf_path = device.eth_path;
         // Edit this: replace `Boilerplate` by your plugin name
-        lib_elf = { 'Boilerplate': device.path };
+        lib_elf = { 'TiFiBank': device.path };
 
         const sim = new Zemu(elf_path, lib_elf);
         try {
-            await sim.start({...sim_options_nano, model: device.name});
+            await sim.start({ ...sim_options_nano, model: device.name });
             const transport = await sim.getTransport();
             const eth = new Eth(transport);
             eth.setLoadConfig({

@@ -1,4 +1,4 @@
-#include "boilerplate_plugin.h"
+#include "tifi_bank_plugin.h"
 
 static int find_selector(uint32_t selector, const uint32_t *selectors, size_t n, selector_t *out) {
     for (selector_t i = 0; i < n; i++) {
@@ -10,20 +10,14 @@ static int find_selector(uint32_t selector, const uint32_t *selectors, size_t n,
     return -1;
 }
 
-// Called once to init.
 void handle_init_contract(void *parameters) {
-    // Cast the msg to the type of structure we expect (here, ethPluginInitContract_t).
     ethPluginInitContract_t *msg = (ethPluginInitContract_t *) parameters;
 
-    // Make sure we are running a compatible version.
     if (msg->interfaceVersion != ETH_PLUGIN_INTERFACE_VERSION_LATEST) {
-        // If not the case, return the `UNAVAILABLE` status.
         msg->result = ETH_PLUGIN_RESULT_UNAVAILABLE;
         return;
     }
 
-    // Double check that the `context_t` struct is not bigger than the maximum size (defined by
-    // `msg->pluginContextLength`).
     if (msg->pluginContextLength < sizeof(context_t)) {
         PRINTF("Plugin parameters structure is bigger than allowed size\n");
         msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -32,24 +26,56 @@ void handle_init_contract(void *parameters) {
 
     context_t *context = (context_t *) msg->pluginContext;
 
-    // Initialize the context (to 0).
     memset(context, 0, sizeof(*context));
 
     uint32_t selector = U4BE(msg->selector, 0);
-    if (find_selector(selector, BOILERPLATE_SELECTORS, NUM_SELECTORS, &context->selectorIndex)) {
+    if (find_selector(selector, TIFI_SELECTORS, NUM_SELECTORS, &context->selectorIndex)) {
         msg->result = ETH_PLUGIN_RESULT_UNAVAILABLE;
         return;
     }
 
-    // Set `next_param` to be the first field we expect to parse.
-    // EDIT THIS: Adapt the `cases`, and set the `next_param` to be the first parameter you expect
-    // to parse.
     switch (context->selectorIndex) {
-        case SWAP_EXACT_ETH_FOR_TOKENS:
+        case SWAP_EXACT_ETH_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS:
             context->next_param = MIN_AMOUNT_RECEIVED;
             break;
-        case BOILERPLATE_DUMMY_2:
+        case SWAP_EXACT_TOKENS_FOR_TOKENS_SUPPORTING_FEE_ON_TRANSFER_TOKENS:
+            context->next_param = AMOUNT_SENT;
+            break;
+        case SWAP_EXACT_TOKENS_FOR_ETH_SUPPORTING_FEE_ON_TRANSFER_TOKENS:
+            context->next_param = AMOUNT_SENT;
+            break;
+        case ADD_LIQUIDITY_ETH:
+            context->next_param = TOKEN_SENT;
+            break;
+        case REMOVE_LIQUIDITY_ETH:
+            context->next_param = TOKEN_SENT;
+            break;
+        case LUCKY_BAG_AND_STAKE_DEPOSIT:
+            context->next_param = AMOUNT_SENT;
+            break;
+        case STAKE_WITHDRAW:
+            context->next_param = MIN_AMOUNT_RECEIVED;
+            break;
+        case LUCKY_BAG_WITHDRAW:
+            context->next_param = MIN_AMOUNT_RECEIVED;
+            break;
+        case LUCKY_BAG_ENTER:
+            context->next_param = AMOUNT_SENT;
+            break;
+        case APPROVE:
+            context->next_param = TOKEN_SENT;
+            break;
+        case LOAN_DEPOSIT:
+            context->next_param = TOKEN_SENT;
+            break;
+        case LOAN_WITHDRAW:
             context->next_param = TOKEN_RECEIVED;
+            break;
+        case LOAN_BORROW:
+            context->next_param = TOKEN_RECEIVED;
+            break;
+        case LOAN_REPAY_BY_SHARE:
+            context->next_param = TOKEN_SENT;
             break;
         // Keep this
         default:
