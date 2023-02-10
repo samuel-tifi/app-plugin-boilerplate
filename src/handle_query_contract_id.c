@@ -27,7 +27,7 @@ void handle_query_contract_id(void *parameters) {
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
         case LUCKY_BAG_AND_STAKE_DEPOSIT:
-            strlcpy(msg->version, "DEPOSIT", msg->versionLength);
+            strlcpy(msg->version, "Deposit", msg->versionLength);
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
         case STAKE_WITHDRAW:
@@ -35,11 +35,11 @@ void handle_query_contract_id(void *parameters) {
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
         case LUCKY_BAG_WITHDRAW:
-            strlcpy(msg->version, "Lucky Bag", msg->versionLength);
+            strlcpy(msg->version, "Lucky Bags", msg->versionLength);
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
         case LUCKY_BAG_ENTER:
-            strlcpy(msg->version, "Lucky Bag", msg->versionLength);
+            strlcpy(msg->version, "Lucky Bags", msg->versionLength);
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
         case APPROVE:

@@ -128,7 +128,7 @@ jobs:
         with:
           repository: LedgerHQ/ethereum-plugin-sdk
           path: ethereum-plugin-sdk
-          ref: develop
+          ref: ${{ github.base_ref || github.ref_name }}
       - name: Build with Clang Static Analyzer
         run: |
           make clean

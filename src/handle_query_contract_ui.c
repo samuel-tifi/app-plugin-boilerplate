@@ -85,7 +85,7 @@ static void set_screen0(ethQueryContractUI_t *msg, const context_t *context) {
                            msg->msgLength);
             break;
         case LUCKY_BAG_ENTER:
-            strlcpy(msg->title, "Play with", msg->titleLength);
+            strlcpy(msg->title, "Bet with", msg->titleLength);
             amountToString(context->amount_sent,
                            sizeof(context->amount_sent),
                            WEI_TO_ETHER,
@@ -105,7 +105,7 @@ static void set_screen0(ethQueryContractUI_t *msg, const context_t *context) {
                 chainid);
             break;
         case LOAN_DEPOSIT:
-            strlcpy(msg->title, "Loan Deposite", msg->titleLength);
+            strlcpy(msg->title, "Loan Deposit", msg->titleLength);
             amountToString(context->amount_sent,
                            sizeof(context->amount_sent),
                            decimals,
